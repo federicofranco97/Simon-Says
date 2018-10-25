@@ -86,11 +86,16 @@ public class Juego extends javax.swing.JFrame {
     
     }
     
+    public boolean verificarToques(){
+        if(toques.size() == respuesta.size()){
+            return true;
+        }
+        return false;
+    }
+    
     public void acierto(){
-        JOptionPane.showMessageDialog(null, "Acertaste!\n"
-                + "Presiona Proxima Etapa");
-        btnNext.setEnabled(true);
-        btnVerificar.setEnabled(false);
+        lbl7.setText("Acertaste!");
+        botonNext();
     }
     
     public void pifio(){
@@ -211,6 +216,19 @@ public class Juego extends javax.swing.JFrame {
         timer.start();
     }
    
+    public void botonNext(){
+        Timer timer = new Timer(900,null);
+        timer.addActionListener((e)->{
+            ronda++;
+            lbl7.setText("Etapa "+(ronda));
+            bloquearBotones();
+            generarColor();
+            toques.removeAll(toques);
+            desbloquearBotones();
+            timer.stop();
+        });
+        timer.start();
+    }
 
     
     //FUNCIONES 
@@ -233,8 +251,6 @@ public class Juego extends javax.swing.JFrame {
         btnAyuda = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btnEmpezar = new javax.swing.JButton();
-        btnNext = new javax.swing.JButton();
-        btnVerificar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         lbl7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -352,26 +368,6 @@ public class Juego extends javax.swing.JFrame {
             }
         });
 
-        btnNext.setBackground(new java.awt.Color(0, 0, 0));
-        btnNext.setForeground(new java.awt.Color(255, 255, 255));
-        btnNext.setText("Proxima Etapa");
-        btnNext.setEnabled(false);
-        btnNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextActionPerformed(evt);
-            }
-        });
-
-        btnVerificar.setBackground(new java.awt.Color(0, 0, 0));
-        btnVerificar.setForeground(new java.awt.Color(255, 255, 255));
-        btnVerificar.setText("Verificar");
-        btnVerificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerificarActionPerformed(evt);
-            }
-        });
-        btnVerificar.setEnabled(false);
-
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Salir");
@@ -408,15 +404,11 @@ public class Juego extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
+                        .addGap(205, 205, 205)
                         .addComponent(btnEmpezar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnNext)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnVerificar)
-                        .addGap(26, 26, 26)
+                        .addGap(101, 101, 101)
                         .addComponent(jButton1)))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,8 +419,6 @@ public class Juego extends javax.swing.JFrame {
                 .addComponent(lbl7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNext)
-                    .addComponent(btnVerificar)
                     .addComponent(jButton1)
                     .addComponent(btnEmpezar))
                 .addGap(54, 54, 54))
@@ -447,7 +437,6 @@ public class Juego extends javax.swing.JFrame {
         generarColor();
         btnEmpezar.setEnabled(false);
         desbloquearBotones();
-        btnVerificar.setEnabled(true);
              
     }//GEN-LAST:event_btnEmpezarActionPerformed
 
@@ -455,45 +444,77 @@ public class Juego extends javax.swing.JFrame {
         if(bloqueados)return;
         toques.add(btn1.getName());
         generarColor(1);
+        if(verificarToques()){
+            Timer timer=new Timer(500,null);
+            timer.addActionListener((al)->{
+                bloquearLabels();
+            if(toques.equals(respuesta)){
+                acierto();
+            }else{
+                pifio();
+            }
+            timer.stop();
+            });
+            timer.start();
+        }
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         if(bloqueados)return;
         toques.add(btn2.getName());
         generarColor(2);
+        if(verificarToques()){
+            Timer timer=new Timer(500,null);
+            timer.addActionListener((al)->{
+                bloquearLabels();
+            if(toques.equals(respuesta)){
+                acierto();
+            }else{
+                pifio();
+            }
+            timer.stop();
+            });
+            timer.start();
+        }
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         if(bloqueados)return;
         toques.add(btn3.getName());
         generarColor(3);
+        if(verificarToques()){
+            Timer timer=new Timer(500,null);
+            timer.addActionListener((al)->{
+                bloquearLabels();
+            if(toques.equals(respuesta)){
+                acierto();
+            }else{
+                pifio();
+            }
+            timer.stop();
+            });
+            timer.start();
+        }
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         if(bloqueados)return;
         toques.add(btn4.getName());
         generarColor(4);
-    }//GEN-LAST:event_btn4ActionPerformed
-
-    private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
-        bloquearLabels();
-        if(toques.equals(respuesta)){
-            acierto();
-        }else{
-            pifio();
+        if(verificarToques()){
+            Timer timer=new Timer(500,null);
+            timer.addActionListener((al)->{
+                bloquearLabels();
+            if(toques.equals(respuesta)){
+                acierto();
+            }else{
+                pifio();
+            }
+            timer.stop();
+            });
+            timer.start();
         }
-    }//GEN-LAST:event_btnVerificarActionPerformed
-
-    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        ronda++;
-        lbl7.setText("Etapa "+(ronda));
-        bloquearBotones();
-        generarColor();
-        toques.removeAll(toques);
-        desbloquearBotones();
-        btnNext.setEnabled(false);
-        btnVerificar.setEnabled(true);
-    }//GEN-LAST:event_btnNextActionPerformed
+    }//GEN-LAST:event_btn4ActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         String msj="INSTRUCCIONES DE JUEGO\n"
@@ -569,8 +590,6 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JButton btn4;
     private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnEmpezar;
-    private javax.swing.JButton btnNext;
-    private javax.swing.JButton btnVerificar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
