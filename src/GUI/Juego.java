@@ -95,7 +95,13 @@ public class Juego extends javax.swing.JFrame {
     
     public void acierto(){
         lbl7.setText("Acertaste!");
-        botonNext();
+        repetirSecuencia();
+        Timer timer = new Timer(2000,null);
+        timer.addActionListener((e)-> {
+            botonNext();
+            timer.stop();
+        });
+        timer.start();
     }
     
     public void pifio(){
@@ -200,22 +206,23 @@ public class Juego extends javax.swing.JFrame {
                 timer.start();
                 break;
         }//fin switch
+        
     }//fin generar color
-    
-    public void generarColores(int numeroRonda){
-        veces=numeroRonda;
+
+   
+    public void repetirSecuencia(){
         Timer timer = new Timer(1000,null);
         timer.addActionListener((e)->{
-            generarColor();
-            veces--;
-            if(veces==0){
-                timer.stop();
+            for(int i=0;i<respuesta.size();i++){
+                generarColor(Integer.parseInt(respuesta.get(i)));
+                
             }
-            
+        timer.stop();
+        
         });
         timer.start();
     }
-   
+    
     public void botonNext(){
         Timer timer = new Timer(900,null);
         timer.addActionListener((e)->{
