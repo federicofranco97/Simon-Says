@@ -40,6 +40,8 @@ public class Juego extends javax.swing.JFrame {
     static boolean bloqueados;
     static int veces=0;
     private ArrayList<String> respuesta=new ArrayList<String>();
+    static int topScore=0;
+    static String topPlayer="";
     //VARIABLES
     
     //FUNCIONES 
@@ -93,8 +95,17 @@ public class Juego extends javax.swing.JFrame {
     
     public void pifio(){
         JOptionPane.showMessageDialog(null, "Pifiaste!\n"
-                + "Empiezas desde cero");
+                + "Empiezas desde cero\n"
+                + "Tu puntaje fue: "+ronda);
+        if(ronda>topScore){
+            topPlayer=JOptionPane.showInputDialog("Marcaste el puntaje mas alto registrado!\n"
+                    + "vv Ingresa tu nombre vv");
+            topScore=ronda;
+        }
+        
         Juego juego = new Juego();
+        juego.topPlayer=topPlayer;
+        juego.topScore=topScore;
         juego.setVisible(true);
         this.setVisible(false);
     }
@@ -225,10 +236,12 @@ public class Juego extends javax.swing.JFrame {
         btnNext = new javax.swing.JButton();
         btnVerificar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        lbl7 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SimonSays");
-        setMinimumSize(new java.awt.Dimension(669, 347));
+        setMinimumSize(new java.awt.Dimension(669, 386));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -316,7 +329,8 @@ public class Juego extends javax.swing.JFrame {
         getContentPane().add(lbl4);
         lbl4.setBounds(20, 90, 120, 50);
 
-        btnAyuda.setForeground(new java.awt.Color(0, 0, 0));
+        btnAyuda.setBackground(new java.awt.Color(0, 0, 0));
+        btnAyuda.setForeground(new java.awt.Color(255, 255, 255));
         btnAyuda.setText("?");
         btnAyuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,8 +341,10 @@ public class Juego extends javax.swing.JFrame {
         btnAyuda.setBounds(607, 10, 40, 32);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(670, 386));
 
-        btnEmpezar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEmpezar.setBackground(new java.awt.Color(0, 0, 0));
+        btnEmpezar.setForeground(new java.awt.Color(255, 255, 255));
         btnEmpezar.setText("Empezar");
         btnEmpezar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,7 +352,8 @@ public class Juego extends javax.swing.JFrame {
             }
         });
 
-        btnNext.setForeground(new java.awt.Color(0, 0, 0));
+        btnNext.setBackground(new java.awt.Color(0, 0, 0));
+        btnNext.setForeground(new java.awt.Color(255, 255, 255));
         btnNext.setText("Proxima Etapa");
         btnNext.setEnabled(false);
         btnNext.addActionListener(new java.awt.event.ActionListener() {
@@ -345,7 +362,8 @@ public class Juego extends javax.swing.JFrame {
             }
         });
 
-        btnVerificar.setForeground(new java.awt.Color(0, 0, 0));
+        btnVerificar.setBackground(new java.awt.Color(0, 0, 0));
+        btnVerificar.setForeground(new java.awt.Color(255, 255, 255));
         btnVerificar.setText("Verificar");
         btnVerificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,11 +372,26 @@ public class Juego extends javax.swing.JFrame {
         });
         btnVerificar.setEnabled(false);
 
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        lbl7.setFont(new java.awt.Font("Freestyle Script", 1, 36)); // NOI18N
+        lbl7.setForeground(new java.awt.Color(0, 0, 0));
+        lbl7.setText("Etapa 1");
+        lbl7.setVisible(false);
+
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Top Play");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -367,36 +400,51 @@ public class Juego extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(btnEmpezar)
-                .addGap(18, 18, 18)
-                .addComponent(btnNext)
-                .addGap(27, 27, 27)
-                .addComponent(btnVerificar)
-                .addGap(26, 26, 26)
-                .addComponent(jButton1)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(93, 93, 93)
+                                .addComponent(btnEmpezar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnNext)
+                                .addGap(27, 27, 27)
+                                .addComponent(btnVerificar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(270, 270, 270)
+                                .addComponent(lbl7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2)))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(266, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                .addComponent(lbl7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNext)
                     .addComponent(btnVerificar)
                     .addComponent(jButton1)
                     .addComponent(btnEmpezar))
-                .addGap(52, 52, 52))
+                .addGap(54, 54, 54))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 670, 350);
+        jPanel1.setBounds(0, 0, 670, 386);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
-        ronda++;
+        ronda=1;
+        lbl7.setVisible(true);
         bloquearBotones();
         generarColor();
         btnEmpezar.setEnabled(false);
@@ -440,6 +488,7 @@ public class Juego extends javax.swing.JFrame {
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         ronda++;
+        lbl7.setText("Etapa "+(ronda));
         bloquearBotones();
         generarColor();
         toques.removeAll(toques);
@@ -467,6 +516,17 @@ public class Juego extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(topPlayer != ""){
+            JOptionPane.showMessageDialog(null, "La mejor jugada registrada fue por:\n"
+                    + "*** "+topPlayer+" ***\n"
+                            + "Con un puntaje de:\n"
+                            + "*** "+topScore+" ***");
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay jugadas registradas");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -514,6 +574,7 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnVerificar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl1;
@@ -522,5 +583,6 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JLabel lbl4;
     private javax.swing.JLabel lbl5;
     private javax.swing.JLabel lbl6;
+    private javax.swing.JLabel lbl7;
     // End of variables declaration//GEN-END:variables
 }
