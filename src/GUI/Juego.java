@@ -99,7 +99,7 @@ public class Juego extends javax.swing.JFrame {
                 + "Tu puntaje fue: "+ronda);
         if(ronda>topScore){
             topPlayer=JOptionPane.showInputDialog("Marcaste el puntaje mas alto registrado!\n"
-                    + "vv Ingresa tu nombre vv");
+                    + " Ingresa tu nombre ");
             topScore=ronda;
         }
         
@@ -402,23 +402,21 @@ public class Juego extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addComponent(btnEmpezar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnNext)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnVerificar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(270, 270, 270)
-                                .addComponent(lbl7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton1))
+                        .addGap(270, 270, 270)
+                        .addComponent(lbl7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2)))
-                .addContainerGap(178, Short.MAX_VALUE))
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(btnEmpezar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNext)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnVerificar)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton1)))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -520,9 +518,9 @@ public class Juego extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(topPlayer != ""){
             JOptionPane.showMessageDialog(null, "La mejor jugada registrada fue por:\n"
-                    + "*** "+topPlayer+" ***\n"
-                            + "Con un puntaje de:\n"
-                            + "*** "+topScore+" ***");
+                    +topPlayer+"\n"
+                    + "Con un puntaje de:\n"
+                    + topScore);
         }else{
             JOptionPane.showMessageDialog(null, "No hay jugadas registradas");
         }
