@@ -210,11 +210,8 @@ public class Juego extends javax.swing.JFrame {
 
         btn1 = new javax.swing.JButton();
         btn2 = new javax.swing.JButton();
-        btnEmpezar = new javax.swing.JButton();
         btn3 = new javax.swing.JButton();
         btn4 = new javax.swing.JButton();
-        btnVerificar = new javax.swing.JButton();
-        btnNext = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lbl1 = new javax.swing.JLabel();
         lbl2 = new javax.swing.JLabel();
@@ -222,10 +219,15 @@ public class Juego extends javax.swing.JFrame {
         lbl6 = new javax.swing.JLabel();
         lbl5 = new javax.swing.JLabel();
         lbl4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAyuda = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        btnEmpezar = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
+        btnVerificar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SimonSays");
         setMinimumSize(new java.awt.Dimension(669, 347));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -251,16 +253,6 @@ public class Juego extends javax.swing.JFrame {
         getContentPane().add(btn2);
         btn2.setBounds(325, 100, 169, 51);
 
-        btnEmpezar.setForeground(new java.awt.Color(0, 0, 0));
-        btnEmpezar.setText("Empezar");
-        btnEmpezar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmpezarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEmpezar);
-        btnEmpezar.setBounds(130, 266, 80, 32);
-
         btn3.setBackground(new java.awt.Color(255, 255, 255));
         btn3.setForeground(new java.awt.Color(0, 0, 0));
         btn3.setName("3");
@@ -281,28 +273,6 @@ public class Juego extends javax.swing.JFrame {
         });
         getContentPane().add(btn4);
         btn4.setBounds(325, 163, 169, 51);
-
-        btnVerificar.setForeground(new java.awt.Color(0, 0, 0));
-        btnVerificar.setText("Verificar");
-        btnVerificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerificarActionPerformed(evt);
-            }
-        });
-        btnVerificar.setEnabled(false);
-        getContentPane().add(btnVerificar);
-        btnVerificar.setBounds(415, 266, 79, 32);
-
-        btnNext.setForeground(new java.awt.Color(0, 0, 0));
-        btnNext.setText("Proxima Etapa");
-        btnNext.setEnabled(false);
-        btnNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnNext);
-        btnNext.setBounds(258, 266, 113, 32);
 
         jLabel1.setFont(new java.awt.Font("Freestyle Script", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -346,27 +316,77 @@ public class Juego extends javax.swing.JFrame {
         getContentPane().add(lbl4);
         lbl4.setBounds(20, 90, 120, 50);
 
+        btnAyuda.setForeground(new java.awt.Color(0, 0, 0));
+        btnAyuda.setText("?");
+        btnAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAyudaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAyuda);
+        btnAyuda.setBounds(607, 10, 40, 32);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnEmpezar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEmpezar.setText("Empezar");
+        btnEmpezar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpezarActionPerformed(evt);
+            }
+        });
+
+        btnNext.setForeground(new java.awt.Color(0, 0, 0));
+        btnNext.setText("Proxima Etapa");
+        btnNext.setEnabled(false);
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
+
+        btnVerificar.setForeground(new java.awt.Color(0, 0, 0));
+        btnVerificar.setText("Verificar");
+        btnVerificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerificarActionPerformed(evt);
+            }
+        });
+        btnVerificar.setEnabled(false);
+
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("?");
+        jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(607, 10, 40, 32);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addComponent(btnEmpezar)
+                .addGap(18, 18, 18)
+                .addComponent(btnNext)
+                .addGap(27, 27, 27)
+                .addComponent(btnVerificar)
+                .addGap(26, 26, 26)
+                .addComponent(jButton1)
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(266, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNext)
+                    .addComponent(btnVerificar)
+                    .addComponent(jButton1)
+                    .addComponent(btnEmpezar))
+                .addGap(52, 52, 52))
         );
 
         getContentPane().add(jPanel1);
@@ -428,16 +448,24 @@ public class Juego extends javax.swing.JFrame {
         btnVerificar.setEnabled(true);
     }//GEN-LAST:event_btnNextActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
         String msj="INSTRUCCIONES DE JUEGO\n"
+                +"-------------------------IMPORTANTE:----------------------------------\n"
+                + "No te apures a clickear, espera a que desaparezca el color para evitar fallos.\n"
+                 +"-------------------------IMPORTANTE:----------------------------------\n"
                 + "1-Selecciona empezar.\n"
                 + "2-Memoriza la secuencia de colores que van apareciendo.\n"
                 + "3-Los colores no se repiten, debes acordartelos para mas dificultad.\n"
                 + "4-Cuando termina la secuencia, se habilitan los botones.\n"
                 +"5-Selecciona los colores que crees que fueron apareciendo\n"
                 + "6-Clickea Verificar para ver si acertaste a la secuencia!\n"
-                + "7-Si aciertas, click en proxima etapa, sino al empezar de nuevo!.";
+                + "7-Si aciertas, click en proxima etapa, sino al empezar de nuevo!.\n"
+                ;
         JOptionPane.showMessageDialog(null, msj);
+    }//GEN-LAST:event_btnAyudaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -481,6 +509,7 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JButton btn2;
     private javax.swing.JButton btn3;
     private javax.swing.JButton btn4;
+    private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnEmpezar;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnVerificar;
