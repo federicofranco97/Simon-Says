@@ -42,6 +42,7 @@ public class Juego extends javax.swing.JFrame {
     private ArrayList<String> respuesta=new ArrayList<String>();
     static int topScore=0;
     static String topPlayer="";
+    int ios;
     //VARIABLES
     
     //FUNCIONES 
@@ -96,7 +97,7 @@ public class Juego extends javax.swing.JFrame {
     public void acierto(){
         lbl7.setText("Acertaste!");
         repetirSecuencia();
-        Timer timer = new Timer(2000,null);
+        Timer timer = new Timer(1500,null);
         timer.addActionListener((e)-> {
             botonNext();
             timer.stop();
@@ -124,7 +125,8 @@ public class Juego extends javax.swing.JFrame {
     
     public void generarColor(){
         int random = (int) (Math.random()*4);
-        respuesta.add(String.valueOf(random+1));
+      //  respuesta.add(String.valueOf(random+1));
+      respuesta.add((random+1)+"");
         Timer timer = new Timer(800, null);
         switch(random){
             case 0:
@@ -209,12 +211,29 @@ public class Juego extends javax.swing.JFrame {
         
     }//fin generar color
 
+ 
+        public void repetirSecuencia5(){
+        
+         for (int i = 0; i < respuesta.size(); i++){
+           
    
+                generarColor(Integer.parseInt(respuesta.get(i)));
+                // for (int k = 0; k < 1000000; k++);
+            
+         }
+             
+    }
+    
+    
+    
     public void repetirSecuencia(){
         Timer timer = new Timer(1000,null);
         timer.addActionListener((e)->{
-            for(int i=0;i<respuesta.size();i++){
-                generarColor(Integer.parseInt(respuesta.get(i)));
+            for(ios=0;ios<respuesta.size();ios++){
+              
+                  generarColor(Integer.parseInt(respuesta.get(ios)));
+                  
+          
                 
             }
         timer.stop();
