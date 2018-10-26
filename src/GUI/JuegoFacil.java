@@ -301,6 +301,9 @@ public class JuegoFacil extends javax.swing.JFrame {
             
         });
         timer.start();
+            
+       
+        
     }
     
     /**
