@@ -27,9 +27,7 @@ public class JuegoDificil extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    /**
-     * Declaracion de variables personalizadas
-     */
+  
     
     
     /**
@@ -68,9 +66,7 @@ public class JuegoDificil extends javax.swing.JFrame {
     static String topPlayer="";
     
     
-    /**
-     * DECLARACION DE FUNCIONES PERSONALIZADAS
-     */
+   
     public void llenarColores(){
         colores.add(Color.RED);
         colores.add(Color.GREEN);
@@ -101,7 +97,10 @@ public class JuegoDificil extends javax.swing.JFrame {
             labels.get(i).setVisible(false);
         }
     }
-    
+     /**
+     * bloqueo y desbloqueo de los labels que indican al usuario que puede
+     * hacer sus movimientos. (que los botones estan desbloqueados)
+     */
     public void desbloquearLabels(){
         for(int i=0;i<labels.size();i++){
             labels.get(i).setVisible(true);
