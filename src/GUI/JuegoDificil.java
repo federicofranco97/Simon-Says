@@ -2,6 +2,13 @@
 package GUI;
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javafx.scene.layout.Background;
 import javax.swing.JButton;
@@ -24,6 +31,7 @@ public class JuegoDificil extends javax.swing.JFrame {
         agregarBotones();
         bloqueados=true;
         bloquearLabels();
+        traerTopScore();
         setLocationRelativeTo(null);
     }
     
@@ -64,7 +72,7 @@ public class JuegoDificil extends javax.swing.JFrame {
      */
     static int topScore=0;
     static String topPlayer="";
-    
+    private File archivo1=new File("topPlay.txt");
     
    
     public void llenarColores(){
@@ -137,13 +145,44 @@ public class JuegoDificil extends javax.swing.JFrame {
     public void acierto(){
         lbl7.setText("Acertaste!");
         
-        Timer timer = new Timer(800,null);
+        Timer timer = new Timer(300,null);
         timer.addActionListener((e)-> {
             botonNext();
             timer.stop();
         });
         timer.start();
     }
+    
+    /**
+     * Funcion que lee el txt que tiene almacenado el mejor puntaje y lo compara con el de la
+     * ejecucion para ver si es mas alto
+     */
+    public void traerTopScore(){
+        String texto="";
+        try{
+            String cadena;
+            
+            
+            FileReader f = new FileReader(archivo1);
+            BufferedReader b = new BufferedReader(f);
+            while((cadena = b.readLine())!=null) {
+                texto=cadena;
+                
+            }
+            b.close();
+            
+        }catch(Exception e){}
+        
+        if(texto != ""){
+            String[]topJug=texto.split(":");
+            topPlayer=topJug[0];
+            topScore=Integer.parseInt(topJug[1]);
+        }
+        
+        
+        
+    }
+    
     
     /**
      * funcion que se ejecuta cuando el usuario no acierta la secuencia
@@ -158,7 +197,19 @@ public class JuegoDificil extends javax.swing.JFrame {
             topPlayer=JOptionPane.showInputDialog("Marcaste el puntaje mas alto registrado!\n"
                     + " Ingresa tu nombre ");
             topScore=ronda;
+            try{
+            PrintWriter writer = new PrintWriter(archivo1);
+            writer.print("");
+            writer.close();
+            FileWriter escribir = new FileWriter(archivo1,true);
+            BufferedWriter f = new BufferedWriter(escribir);
+            f.write(topPlayer+":"+topScore);
+            f.newLine();
+            f.close();
+        }catch(IOException e){}
         }
+        
+        
         
         JuegoDificil juego = new JuegoDificil();
         juego.topPlayer=topPlayer;
